@@ -18,6 +18,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 type CountryForm = {
   code: string;
@@ -144,20 +145,26 @@ export function HomePage() {
           )}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
             {countryData?.countries.map((c: any) => (
-              <Card
+              <Link
+                to={`/pays/${c.code}`}
                 key={c.code}
-                className="bg-card-light dark:bg-card-dark hover:shadow-lg transition"
+                className="block hover:no-underline"
               >
-                <CardHeader className="flex items-center space-x-4 p-4">
-                  <span className="text-4xl">{c.emoji}</span>
-                  <div>
-                    <CardTitle>{c.name}</CardTitle>
-                    <p className="text-sm text-gray-500">
-                      {c.code} — {c.continent?.name || "—"}
-                    </p>
-                  </div>
-                </CardHeader>
-              </Card>
+                <Card
+                  key={c.code}
+                  className="bg-card-light dark:bg-card-dark hover:shadow-lg transition"
+                >
+                  <CardHeader className="flex items-center space-x-4 p-4">
+                    <span className="text-4xl">{c.emoji}</span>
+                    <div>
+                      <CardTitle>{c.name}</CardTitle>
+                      <p className="text-sm text-gray-500">
+                        {c.code} — {c.continent?.name || "—"}
+                      </p>
+                    </div>
+                  </CardHeader>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>

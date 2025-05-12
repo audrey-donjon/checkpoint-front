@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { HomePage } from "./pages/Home";
 import { PageLayout } from "./components/Layout";
+import DetailPage from "./pages/DetailPage";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
@@ -18,6 +19,7 @@ function App() {
           <Route Component={PageLayout}>
             <Route path="/" Component={HomePage} />
             <Route path="*" Component={() => <Navigate to="/" />} />
+            <Route path="/pays/:code" element={<DetailPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
